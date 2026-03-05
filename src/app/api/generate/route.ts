@@ -12,7 +12,7 @@ const MODAL_URL =
   "https://nkjain92--omnilottie-omnilottieservice-generate.modal.run";
 const HF_SPACE = "OmniLottie/OmniLottie";
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
-const GEMINI_MODEL = "gemini-2.5-flash-lite";
+const GEMINI_MODEL = "gemini-3.1-flash-lite-preview";
 
 // Track when Modal GPU was last used (in-memory, resets on server restart)
 // Modal scaledown_window is 300s, so GPU stays warm ~5min after last request
