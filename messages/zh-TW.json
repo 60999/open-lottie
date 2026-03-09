@@ -115,5 +115,47 @@
   "howItWorks": {
     "title": "運作原理：",
     "description": "OmniLottie 擴展了 Qwen2.5-VL，配備了專門的 Lottie 分詞器，將 JSON 動畫檔案轉換為結構化的命令和參數序列 — 形狀、動畫函數和控制值。模型以自迴歸方式生成這些參數化的 Lottie 令牌，然後解碼回有效的 Lottie JSON，呈現為可縮放的向量動畫。"
+  },
+  "preview": {
+    "title": "預覽",
+    "playPause": "播放/暫停",
+    "restart": "重新播放",
+    "copyJson": "複製JSON",
+    "downloadJson": "下載JSON",
+    "generating": "生成動畫中...",
+    "noAnimation": "暫無動畫",
+    "selectMode": "選擇模式並生成動畫"
+  },
+  "library": {
+    "title": "作品庫",
+    "unnamed": "未命名"
+  },
+  "params": {
+    "title": "生成參數",
+    "temperature": {
+      "label": "溫度",
+      "help": "控制隨機性。值越高越有創意，值越低越確定。"
+    },
+    "topP": {
+      "label": "Top-p",
+      "help": "核採樣閾值。"
+    },
+    "topK": {
+      "label": "Top-k",
+      "help": "限制令牌選擇為概率最高的前k個。"
+    },
+    "repetitionPenalty": {
+      "label": "重複懲罰",
+      "help": "懲罰重複的令牌。1.0表示無懲罰。"
+    },
+    "numCandidates": {
+      "label": "候選數量 (Best-of-N)",
+      "help": "生成N個候選並選擇最佳。值越高品質越好但速度越慢。"
+    },
+    "maxLen": {
+      "label": "最大令牌長度",
+      "help": "生成Lottie令牌的最大序列長度。"
+    },
+    "reset": "重設為預設值"
   }
 }

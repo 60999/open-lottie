@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Download, Trash2, ChevronDown, ChevronUp, Clock, DollarSign } from "lucide-react";
 import dynamic from "next/dynamic";
+import { useTranslations } from 'next-intl';
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
@@ -27,6 +28,7 @@ interface StoredData {
 }
 
 export default function Library() {
+  const t = useTranslations('library');
   const [items, setItems] = useState<LibraryItem[]>([]);
   const [expanded, setExpanded] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -60,7 +62,6 @@ export default function Library() {
     }
   }, [loadedData]);
 
-  // Load all items on mount
   useEffect(() => {
     items.forEach((item) => loadItem(item.url));
   }, [items, loadItem]);
@@ -103,7 +104,7 @@ export default function Library() {
         className="w-full flex items-center justify-between px-4 py-3 hover:bg-surface-2 transition-colors"
       >
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium">作品库</span>
+          <span className="text-sm font-medium">{t('title')}</span>
           <span className="text-[10px] text-muted bg-surface-2 px-1.5 py-0.5 rounded-full">
             {items.length}
           </span>
@@ -144,7 +145,7 @@ export default function Library() {
                   {/* Info */}
                   <div className="p-2">
                     <p className="text-[10px] text-foreground truncate" title={meta?.prompt}>
-                      {meta?.prompt || "未命名"}
+                      {meta?.prompt || t('unnamed')}
                     </p>
                     <div className="flex items-center gap-2 mt-1 text-[9px] text-muted/60">
                       {meta?.duration_sec ? (

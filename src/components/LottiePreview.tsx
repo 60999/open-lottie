@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { Download, Play, RotateCcw, Code } from "lucide-react";
+import { useTranslations } from 'next-intl';
 
 interface LottiePreviewProps {
   animationData: Record<string, unknown> | null;
@@ -13,6 +14,7 @@ export default function LottiePreview({
   animationData,
   isGenerating,
 }: LottiePreviewProps) {
+  const t = useTranslations('preview');
   const lottieRef = useRef<LottieRefCurrentProps>(null);
   const isPlaying = useRef(true);
 
@@ -47,26 +49,28 @@ export default function LottiePreview({
 
   const handleCopyJSON = async () => {
     if (!animationData) return;
-    await navigator.clipboard.writeText(JSON.stringify(animationData, null, 2));
+    await navigator.clipboard.writeText(
+      JSON.stringify(animationData, null, 2)
+    );
   };
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-        <span className="text-sm font-medium text-muted">预览</span>
+        <span className="text-sm font-medium text-muted">{t('title')}</span>
         {animationData && (
           <div className="flex items-center gap-1">
             <button
               onClick={handlePlayPause}
               className="p-1.5 rounded-md hover:bg-surface-2 text-muted hover:text-foreground transition-colors"
-              title="播放/暂停"
+              title={t('playPause')}
             >
               <Play size={14} />
             </button>
             <button
               onClick={handleRestart}
               className="p-1.5 rounded-md hover:bg-surface-2 text-muted hover:text-foreground transition-colors"
-              title="重新播放"
+              title={t('restart')}
             >
               <RotateCcw size={14} />
             </button>
@@ -74,14 +78,14 @@ export default function LottiePreview({
             <button
               onClick={handleCopyJSON}
               className="p-1.5 rounded-md hover:bg-surface-2 text-muted hover:text-foreground transition-colors"
-              title="复制JSON"
+              title={t('copyJson')}
             >
               <Code size={14} />
             </button>
             <button
               onClick={handleDownloadJSON}
               className="p-1.5 rounded-md hover:bg-surface-2 text-muted hover:text-foreground transition-colors"
-              title="下载JSON"
+              title={t('downloadJson')}
             >
               <Download size={14} />
             </button>
@@ -93,7 +97,7 @@ export default function LottiePreview({
         {isGenerating ? (
           <div className="flex flex-col items-center gap-4">
             <div className="w-12 h-12 rounded-full border-2 border-border border-t-accent animate-spin" />
-            <p className="text-sm text-muted">生成动画中...</p>
+            <p className="text-sm text-muted">{t('generating')}</p>
           </div>
         ) : animationData ? (
           <div className="w-full max-w-[400px] aspect-square lottie-preview-container bg-surface rounded-lg overflow-hidden">
@@ -111,9 +115,9 @@ export default function LottiePreview({
               <Play size={24} className="text-muted ml-1" />
             </div>
             <div>
-              <p className="text-sm text-muted">暂无动画</p>
+              <p className="text-sm text-muted">{t('noAnimation')}</p>
               <p className="text-xs text-muted/60 mt-1">
-                选择模式并生成动画
+                {t('selectMode')}
               </p>
             </div>
           </div>

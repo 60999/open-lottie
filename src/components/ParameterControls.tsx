@@ -2,6 +2,7 @@
 
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import { useTranslations } from 'next-intl';
 
 export interface GenerationParams {
   temperature: number;
@@ -30,6 +31,7 @@ export default function ParameterControls({
   params,
   onChange,
 }: ParameterControlsProps) {
+  const t = useTranslations('params');
   const [expanded, setExpanded] = useState(false);
 
   const update = (key: keyof GenerationParams, value: number) => {
@@ -43,7 +45,7 @@ export default function ParameterControls({
         className="w-full flex items-center justify-between px-3 py-2.5 hover:bg-surface-2 transition-colors"
       >
         <span className="text-xs font-medium text-muted">
-          生成参数
+          {t('title')}
         </span>
         {expanded ? (
           <ChevronUp size={14} className="text-muted" />
@@ -57,7 +59,7 @@ export default function ParameterControls({
           {/* Temperature */}
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="text-xs text-muted">温度</label>
+              <label className="text-xs text-muted">{t('temperature.label')}</label>
               <span className="text-xs font-mono text-foreground">
                 {params.temperature.toFixed(2)}
               </span>
@@ -74,14 +76,14 @@ export default function ParameterControls({
               className="w-full"
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
-              控制随机性。值越高越有创意，值越低越确定。
+              {t('temperature.help')}
             </p>
           </div>
 
           {/* Top-p */}
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="text-xs text-muted">Top-p</label>
+              <label className="text-xs text-muted">{t('topP.label')}</label>
               <span className="text-xs font-mono text-foreground">
                 {params.top_p.toFixed(2)}
               </span>
@@ -96,14 +98,14 @@ export default function ParameterControls({
               className="w-full"
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
-              核采样阈值。
+              {t('topP.help')}
             </p>
           </div>
 
           {/* Top-k */}
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="text-xs text-muted">Top-k</label>
+              <label className="text-xs text-muted">{t('topK.label')}</label>
               <span className="text-xs font-mono text-foreground">
                 {params.top_k}
               </span>
@@ -118,14 +120,14 @@ export default function ParameterControls({
               className="w-full"
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
-              限制令牌选择为概率最高的前k个。
+              {t('topK.help')}
             </p>
           </div>
 
           {/* Repetition Penalty */}
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="text-xs text-muted">重复惩罚</label>
+              <label className="text-xs text-muted">{t('repetitionPenalty.label')}</label>
               <span className="text-xs font-mono text-foreground">
                 {params.repetition_penalty.toFixed(2)}
               </span>
@@ -142,7 +144,7 @@ export default function ParameterControls({
               className="w-full"
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
-              惩罚重复的令牌。1.0表示无惩罚。
+              {t('repetitionPenalty.help')}
             </p>
           </div>
 
@@ -150,7 +152,7 @@ export default function ParameterControls({
           <div>
             <div className="flex items-center justify-between mb-1">
               <label className="text-xs text-muted">
-                候选数量 (Best-of-N)
+                {t('numCandidates.label')}
               </label>
               <span className="text-xs font-mono text-foreground">
                 {params.num_candidates}
@@ -168,14 +170,14 @@ export default function ParameterControls({
               className="w-full"
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
-              生成N个候选并选择最佳。值越高质量越好但速度越慢。
+              {t('numCandidates.help')}
             </p>
           </div>
 
           {/* Max Token Length */}
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="text-xs text-muted">最大令牌长度</label>
+              <label className="text-xs text-muted">{t('maxLen.label')}</label>
               <span className="text-xs font-mono text-foreground">
                 {params.maxlen}
               </span>
@@ -190,7 +192,7 @@ export default function ParameterControls({
               className="w-full"
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
-              生成Lottie令牌的最大序列长度。
+              {t('maxLen.help')}
             </p>
           </div>
 
@@ -199,7 +201,7 @@ export default function ParameterControls({
             onClick={() => onChange(DEFAULT_PARAMS)}
             className="text-xs text-accent hover:text-accent-hover transition-colors"
           >
-            重置为默认值
+            {t('reset')}
           </button>
         </div>
       )}
