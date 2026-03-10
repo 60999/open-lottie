@@ -229,6 +229,7 @@ export default function Library() {
                       <button
                         onClick={() => handleDelete(item.url)}
                         className="flex items-center justify-center px-1.5 py-1 rounded bg-surface-2 hover:bg-red-500/20 text-muted hover:text-red-400 transition-colors"
+                        aria-label={`Delete ${meta?.prompt || 'animation'}`}
                       >
                         <Trash2 size={10} />
                       </button>

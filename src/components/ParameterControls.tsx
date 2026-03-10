@@ -120,6 +120,7 @@ export default function ParameterControls({
                 update("temperature", parseFloat(e.target.value))
               }
               className="w-full"
+              aria-label={t('temperature.label')}
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
               {t('temperature.help')}
@@ -142,6 +143,7 @@ export default function ParameterControls({
               value={params.top_p}
               onChange={(e) => update("top_p", parseFloat(e.target.value))}
               className="w-full"
+              aria-label={t('topP.label')}
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
               {t('topP.help')}
@@ -164,6 +166,7 @@ export default function ParameterControls({
               value={params.top_k}
               onChange={(e) => update("top_k", parseInt(e.target.value))}
               className="w-full"
+              aria-label={t('topK.label')}
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
               {t('topK.help')}
@@ -188,6 +191,7 @@ export default function ParameterControls({
                 update("repetition_penalty", parseFloat(e.target.value))
               }
               className="w-full"
+              aria-label={t('repetitionPenalty.label')}
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
               {t('repetitionPenalty.help')}
@@ -236,6 +240,7 @@ export default function ParameterControls({
               value={params.maxlen}
               onChange={(e) => update("maxlen", parseInt(e.target.value))}
               className="w-full"
+              aria-label={t('maxLen.label')}
             />
             <p className="text-[10px] text-muted/60 mt-0.5">
               {t('maxLen.help')}
